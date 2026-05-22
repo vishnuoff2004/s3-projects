@@ -1,0 +1,293 @@
+# Problem Statement: Local Service Booking System
+
+Build a small web application where users can book local home services like:
+
+* Electrician
+* Plumber
+* Cleaner
+* AC Repair
+* Carpenter
+
+This project is intentionally beginner-friendly and should be completed **without using AI coding tools**.
+
+The goal is to evaluate:
+
+* Basic backend and frontend skills
+* CRUD operations
+* API handling
+* Database relationships
+* Authentication
+* Simple UI building
+* Independent problem-solving
+
+---
+
+# Tech Stack
+
+## Backend
+
+* Node.js
+* Express.js
+* MySQL
+
+## Frontend
+
+* React.js
+* Axios
+* React Router
+
+---
+
+# Core Features
+
+---
+
+# 1. User Authentication
+
+Users should be able to:
+
+* Register
+* Login
+* Logout
+
+### Requirements
+
+* JWT authentication
+* Password hashing
+* Protected routes
+
+---
+
+# 2. Service Management
+
+Admin can manage services.
+
+### Example Services
+
+* Plumbing
+* Electrical Repair
+* Home Cleaning
+* Painting
+
+### Service Fields
+
+* Service Name
+* Description
+* Price
+* Estimated Duration
+
+---
+
+# 3. Booking System
+
+Users can:
+
+* View available services
+* Book a service
+* Select preferred date
+* Add address
+* Cancel booking
+
+### Booking Status
+
+* Pending
+* Confirmed
+* Completed
+* Cancelled
+
+---
+
+# 4. Service Provider Module
+
+Admin can add service providers.
+
+### Provider Fields
+
+* Name
+* Phone Number
+* Skill Type
+* Availability Status
+
+---
+
+# 5. Dashboard
+
+Users should see:
+
+* Total bookings
+* Upcoming bookings
+* Completed services
+
+Admin should see:
+
+* Total users
+* Total bookings
+* Active providers
+
+---
+
+# Database Tables
+
+The application should contain at least these tables:
+
+1. users
+2. services
+3. service_providers
+4. bookings
+5. booking_statuses
+
+---
+
+# Relationship Expectations
+
+* One user can create many bookings
+* One service can have many bookings
+* One provider can handle many bookings
+* One booking belongs to one service
+
+---
+
+# Required APIs
+
+## Auth APIs
+
+* POST /register
+* POST /login
+
+## Service APIs
+
+* GET /services
+* POST /services
+
+## Booking APIs
+
+* GET /bookings
+* POST /bookings
+* PUT /bookings/:id
+
+---
+
+# Frontend Pages
+
+## Public Pages
+
+* Login
+* Register
+
+## User Pages
+
+* Dashboard
+* Services List
+* My Bookings
+* Book Service Form
+
+## Admin Pages
+
+* Manage Services
+* Manage Providers
+* View All Bookings
+
+---
+
+# Frontend Requirements
+
+The frontend should include:
+
+* Navbar
+* Sidebar
+* Protected routes
+* Simple responsive layout
+* Form validation
+* Loading states
+* Error handling
+
+---
+
+# Validation Rules
+
+Examples:
+
+* Booking date cannot be in the past
+* Phone number should be valid
+* Service name cannot be empty
+* Users cannot cancel completed bookings
+
+---
+
+# Migration Tasks
+
+The project should include migrations.
+
+---
+
+# Mandatory Migration Exercises
+
+## Migration 1
+
+Add:
+
+* profile_photo
+
+to users table.
+
+---
+
+## Migration 2
+
+Add:
+
+* rating
+
+to service_providers table.
+
+---
+
+# Suggested Folder Structure
+
+## Backend
+
+```txt id="s0k1qa"
+src/
+ ├── routes/
+ ├── controllers/
+ ├── models/
+ ├── middlewares/
+ ├── migrations/
+ └── config/
+```
+
+---
+
+## Frontend
+
+```txt id="n7p31z"
+src/
+ ├── pages/
+ ├── components/
+ ├── services/
+ ├── routes/
+ └── utils/
+```
+
+---
+
+# Important Rules
+
+* Do not use AI coding assistants
+* Keep the UI simple
+* Focus on clean functionality
+* Use proper Git commits
+* Write readable code
+
+---
+
+# Submission Requirements
+
+Submit:
+
+1. GitHub repository
+2. README setup instructions
+3. Database schema
+4. Migration files
+5. Screenshots
+6. Postman collection
