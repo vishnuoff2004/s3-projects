@@ -12,6 +12,7 @@ const Sign = () => {
     confirmPassword:''
   })
 
+  const navigate = useNavigate()
     
   const [msg,setMsg] = useState('')
   
@@ -48,34 +49,95 @@ const Sign = () => {
 
   return (
     <>
-    <div className="container">
-      <h3>USER REGISTRATION</h3>
+    <div className="container  flex justify-center items-center bg-violet-200 w-full h-screen">
+        <div>
+             <div className="container bg-violet-400 p-3 rounded hover:border-2 border-white">
+      <h3  className='text-2xl font-bold text-center'>USER REGISTRATION</h3>
 
-      <div className="container d-flex flex-column align-items-center">
+      <div>
+                  <label htmlFor="name" className='font-medium text-black mt-3'>Name :</label>
 
-        <div className="container">
-          <label htmlFor="name">Name:</label>
-         <input type="text" value={data.name} name="name" onChange={handleChange}/> <br />
+                  <div className=''>
+                    <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
+                        <input 
+                        type="text" 
+                        value={data.name}
+                        name="name" 
+                        placeholder='vishnu krishna'
+                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        onChange={handleChange}/>
+                      </div>
+                    </div>
 
-         <label htmlFor="email">Email:</label>
-          <input type="email" value={data.email} name="email" onChange={handleChange}/> <br />
 
-          <label htmlFor="contact">Contact:</label>
-          <input type="text" value={data.contact} name="contact" onChange={handleChange}/> <br />
+                  <label htmlFor="email" className='font-medium text-black mt-1'>Email :</label>
 
-          <label>Password:</label>
-          <input type="password" value={data.password} name="password" onChange={handleChange}/> <br />
+                  <div className=''>
+                    <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
+                        <input 
+                        type="email" 
+                        value={data.email}
+                        name="email" 
+                        placeholder='vishnu@gmail.com'
+                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        onChange={handleChange}/>
+                      </div>
+                    </div>
 
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input type="password" value={data.confirmPassword} name="confirmPassword" onChange={handleChange}/> <br /> 
+                  <label htmlFor="contact" className='font-medium text-black mt-1'>Contact :</label>
 
-          <button onClick={handleRegister}>Register</button>
+                  <div className=''>
+                    <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
+                        <div className='font-bold'>+91</div>
+                        <input 
+                        type="number" 
+                        value={data.contact}
+                        name="contact" 
+                        placeholder=' 8148929450'
+                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        onChange={handleChange}/>
+                      </div>
+                    </div>
 
-          <div>already have an account ? <Link to="/login">Login</Link></div>
-        </div>
+                  <label htmlFor="password" className='font-medium text-black mt-1'>Password :</label>
+
+                  <div className=''>
+                    <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
+                        <input 
+                        type="text" 
+                        value={data.password}
+                        name="password" 
+                        placeholder='* * * * * *'
+                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        onChange={handleChange}/>
+                      </div>
+                    </div>
+
+                  <label htmlFor="confrimPassword" className='font-medium text-black mt-1'>confrim - password :</label>
+
+                  <div className=''>
+                    <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
+                        <input 
+                        type="text" 
+                        value={data.confirmPassword}
+                        name="confirmPassword" 
+                        placeholder='* * * * * *'
+                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        onChange={handleChange}/>
+                      </div>
+                    </div>
+
+                  <div className='text-center'>
+                   <button className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800'  onClick={handleRegister}>Register</button>
+                  </div>
+
+          <div>Already have an account ? <Link to="/login" className='text-white'>Login</Link></div>
    
       </div>
     </div>
+        </div>
+    </div>
+   
     </>
   )
 }

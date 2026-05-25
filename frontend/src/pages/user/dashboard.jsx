@@ -9,7 +9,7 @@ const Dashboard = () => {
           <div>
 
             <div className="d-flex bg-red my-4 ms-2">
-                <h2 className="text-center bg-success p-2">my - dashboard</h2>
+                <h2 className="text-center text-2xl font-bold p-2">my - dashboard</h2>
             </div>
 
               <div className="container">
