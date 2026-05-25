@@ -1,6 +1,12 @@
 import { NavLink } from 'react-router-dom'
+import {useNavigate} from "react-router-dom";
 
 const Nav = () => {
+  const navigate = useNavigate();
+   function handleLogOut(){
+    localStorage.removeItem("token");
+    navigate("/login");
+   }
   return (
     <div className='bg-violet-400'>
       <div className='flex justify-content-center items-center py-2'>
@@ -17,7 +23,7 @@ const Nav = () => {
         </div>
 
         <div className='bg-red-500 p-1 px-3 rounded-sm hover:bg-red-700'>
-          <button className='font-bold text-light'>log-out</button>
+          <button className='font-bold text-light' onClick={()=>handleLogOut()}>log-out</button>
         </div>
     </div>
       </div>

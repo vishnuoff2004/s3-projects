@@ -11,8 +11,11 @@ app.get('/',(req,res)=>{
     console.log('api is working')
 })
 // auth - routes
-
 app.use('/auth',require('./routes/authRoutes'))
+
+// admin service provider - ROUTES
+app.use('/admin',require('./routes/servicesRoutes'))
+
 
 app.listen(port,()=>{
     console.log(`server is running at port ${port}`)

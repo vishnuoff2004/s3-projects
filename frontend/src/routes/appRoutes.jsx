@@ -2,9 +2,11 @@ import {BrowserRouter as Router ,Routes,Route} from "react-router-dom";
 import Dashboard from  "../pages/user/dashboard.jsx"
 import BookServiceForm from  "../pages/user/bookServiceForm.jsx"
 import MyBookings from  "../pages/user/myBookings.jsx"
-import ServiceList from  "../pages/user/serviceList.jsx"
 import Login from "../pages/auth/login.jsx"
 import Sign from "../pages/auth/sign.jsx"
+import SetServices from "../pages/admin/setServices.jsx";
+import ManageServices from "../pages/admin/manageServices.jsx";
+import SetProviders from "../pages/admin/setProviders.jsx";
 
 export default function AppRoutes()
 {
@@ -17,7 +19,9 @@ export default function AppRoutes()
             <Route path='/login' element ={<Login/>}></Route>
             <Route path='/book-service' element ={<BookServiceForm/>}></Route>
             <Route path='/my-bookings' element ={<MyBookings/>}></Route>
-            <Route path='/services' element ={<ServiceList/>}></Route>
+            <Route path='/service-provider' element ={<ManageServices/>}></Route>
+            <Route path="/services" element={<SetServices/>}></Route>
+            <Route path="/set-provider/:id" element={<SetProviders/>}></Route>
           </Routes>
         </Router>
         </>
