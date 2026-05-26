@@ -16,7 +16,7 @@ const Dashboard = () => {
                 <div className="row">
 
                   <div className="col-lg-2 col-sm-10 col-md-2 n ">
-                    <h6 style={{"font-weight":'bold'}} >TOT No. of bookings</h6>
+                    <h6  >TOT No. of bookings</h6>
                     <h1>0</h1>
                   </div>
 

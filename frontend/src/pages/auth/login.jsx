@@ -1,6 +1,8 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { useEffect } from 'react'
 import { useNavigate,Link } from 'react-router-dom'
+import Auth from '../../context-api/authContext'
+import {AuthContext} from "../../context-api/authContext"
 
 const login = () => {
   const [user,setUser] = useState({
@@ -8,6 +10,7 @@ const login = () => {
     isUser:true
   })
 
+  const {token,setToken} = useContext(AuthContext)
   const [msg,setMsg] = useState('')
 
   const [data,setData] = useState({
@@ -18,7 +21,6 @@ const login = () => {
   const navigate = useNavigate()
 
   const api = import.meta.env.VITE_API_URL
-  console.log(api)
 
   useEffect(()=>{
     if(msg == "login successful"){
@@ -37,7 +39,7 @@ const login = () => {
           },
           body:JSON.stringify(data)
         }
-      ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),localStorage.setItem("token",data.token))).catch(err => console.log(err))
+      ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),setToken(data.token),localStorage.setItem("token",data.token))).catch(err => console.log(err))
     }
     else{
       // user login logic
@@ -49,7 +51,7 @@ const login = () => {
           },
           body:JSON.stringify(data)
         }
-      ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),localStorage.setItem("token",data.token))).catch(err => console.log(err))
+      ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),setToken(data.token),localStorage.setItem("token",data.token))).catch(err => console.log(err))
     }
     setData({
       email:'',

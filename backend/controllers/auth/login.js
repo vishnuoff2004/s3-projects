@@ -19,7 +19,7 @@ const userLogin = async(req,res)=>{
         }
 
         const comp = await bcrypt.compare(password,user[0].password)
-        const token  = jwt.sign({id:user[0].id,email:user[0].email},secret_key,{expiresIn:'1h'})
+        const token  = jwt.sign({id:user[0].id,email:user[0].email,role:'user'},secret_key,{expiresIn:'1h'})
 
         res.status(200).json({msg:'login successful',token})
     }
@@ -54,4 +54,17 @@ const adminLogin = async(req,res)=>{
     }
 }
 
-module.exports = {userLogin,adminLogin}
+const vd = async(req,res)=>{
+    try{
+        const user = req.id;
+        const role = req.role;
+        res.status(200).json({data:{user,role}})
+    }
+    catch(err)
+    {
+        res.status(500).json({msg:'internal server error'})
+        console.log(error)
+    }
+}
+
+module.exports = {userLogin,adminLogin,vd}
