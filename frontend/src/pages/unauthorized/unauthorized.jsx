@@ -1,0 +1,13 @@
+import React from 'react'
+
+const Unauthorized = () => {
+  return (
+    <>
+    <div>
+        <img src="/unauth.png" alt="" className='w-100 h-100' />
+    </div>
+    </>
+  )
+}
+
+export default Unauthorized

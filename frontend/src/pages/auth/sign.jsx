@@ -13,7 +13,7 @@ const Sign = () => {
   })
 
   const navigate = useNavigate()
-    
+  const [err,setErr] = useState({})   
   const [msg,setMsg] = useState('')
   
   useEffect(()=>{
@@ -21,6 +21,11 @@ const Sign = () => {
       navigate('/login')
     }
   },[msg])
+
+    useEffect(()=>{
+      validation()
+    },[data])
+  
 
   function handleChange(e){
     // input change logic
@@ -47,6 +52,37 @@ const Sign = () => {
     ).then(res => res.json()).then(data => (alert(data.msg),setMsg(data.msg))).catch(err => console.log(err))
   }
 
+ function validation(){
+
+    const error ={}
+
+    if(!data.email){
+       error.email = "email is required"
+    }
+
+    if(!data.name){
+       error.name = "name is required"
+    }
+
+    if(data.name.length<6){
+      error.name = 'name must greater than 6'
+    }
+
+    if(data.contact.length<9){
+      error.contact = 'contact number must be 10 digit'
+    }
+
+    if(!data.password){
+       error.password = 'password is required'
+    }
+
+    if(data.password.length <6){
+      error.password = "password needs at least 6 character"
+    }
+
+    setErr(error)
+ }  
+
   return (
     <>
     <div className="container  flex justify-center items-center bg-violet-200 w-full h-screen">
@@ -68,6 +104,7 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
+                    {err.name && <p className='text-light ms-3 mt-1'>{err.name} !!!</p>}
 
 
                   <label htmlFor="email" className='font-medium text-black mt-1'>Email :</label>
@@ -83,6 +120,9 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
+                    {err.email && <p className='text-light ms-3 mt-1'>{err.email} !!!</p>}
+
+
 
                   <label htmlFor="contact" className='font-medium text-black mt-1'>Contact :</label>
 
@@ -98,6 +138,8 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
+                    {err.contact && <p className='text-light ms-3 mt-1'>{err.contact} !!!</p>}
+
 
                   <label htmlFor="password" className='font-medium text-black mt-1'>Password :</label>
 
@@ -112,6 +154,8 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
+                    {err.password && <p className='text-light ms-3 mt-1'>{err.password}  !!!</p>}
+
 
                   <label htmlFor="confrimPassword" className='font-medium text-black mt-1'>confrim - password :</label>
 
@@ -126,6 +170,7 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
+
 
                   <div className='text-center'>
                    <button className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800'  onClick={handleRegister}>Register</button>

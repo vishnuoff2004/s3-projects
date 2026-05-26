@@ -37,15 +37,14 @@ const adminLogin = async(req,res)=>{
             return res.status(400).json({msg:'email and password required'})
         }
 
-        const [user] =  await db.query('select * from users where email = ?',[email])
+        const [user] =  await db.query('select * from admins where email = ?',[email])
 
         if(user.length == 0){
             return res.status(404).json({msg:'user not found'})
         }
 
-        const comp = await bcrypt.compare(password,user[0].password)
-        const token  = jwt.sign({id:user[0].id,email:user[0].email},secret_key,{expiresIn:'1h'})
-
+        // const comp = await bcrypt.compare(password,user[0].password)
+        const token  = jwt.sign({id:user[0].id,email:user[0].email,role:'admin'},secret_key,{expiresIn:'1h'})
         res.status(200).json({msg:'login successful',token})
     }
     catch(error){

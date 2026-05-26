@@ -1,4 +1,4 @@
-const adminverification = async(req,res)=>{
+const adminverification = async(req,res,next)=>{
     try{
         if(req.role !== "admin"){
             return res.status(401).json({msg:'unauthorized access !!'})

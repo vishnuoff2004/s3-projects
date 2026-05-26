@@ -20,10 +20,19 @@ const Nav = () => {
         </div>
 
         <div>
+
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/">dash-board</NavLink>
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/services">services</NavLink>
-            <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/book-service">book service</NavLink>
-            <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/my-bookings">my bookings</NavLink>
+              {
+                user?.role == "admin" &&
+                <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/service-provider">manage service</NavLink>
+              }
+  
+              {
+                user?.role == "user" &&
+                 <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/my-bookings">my bookings</NavLink>
+
+              }
         </div>
 
         <div className='flex justify-between '>

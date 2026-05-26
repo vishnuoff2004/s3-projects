@@ -10,6 +10,7 @@ const login = () => {
     isUser:true
   })
 
+  const [err,setErr] = useState({})
   const {token,setToken} = useContext(AuthContext)
   const [msg,setMsg] = useState('')
 
@@ -18,9 +19,14 @@ const login = () => {
     password:''
   })
 
+
   const navigate = useNavigate()
 
   const api = import.meta.env.VITE_API_URL
+
+  useEffect(()=>{
+    validation()
+  },[data])
 
   useEffect(()=>{
     if(msg == "login successful"){
@@ -64,8 +70,26 @@ const login = () => {
     // input change logic
     const {name,value} = e.target
     setData(prev => ({...prev,[name]:value}))
-
   }
+
+ function validation(){
+
+    const error ={}
+
+    if(!data.email){
+       error.email = "email is required"
+    }
+
+    if(!data.password){
+       error.password = 'password is required'
+    }
+
+    if(data.password.length <6){
+      error.password = "password needs at least 6 character"
+    }
+
+    setErr(error)
+ }
 
 
   return (
@@ -96,7 +120,7 @@ const login = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-
+                    {err.email && <p className='text-light ms-3 mt-1'>{err.email} !!!</p>}
 
                   <label htmlFor="email" className='font-medium text-black mt-3'>Password :</label>
 
@@ -110,10 +134,10 @@ const login = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-
+                    {err.password && <p className='text-light ms-3 mt-1'>{err.password}  !!!</p>}
 
                   <div className='text-center'>
-                   <button className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800' onClick={handleLogin}>login</button>
+                   <button  className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800' onClick={handleLogin}>login</button>
                   </div>
 
                     {

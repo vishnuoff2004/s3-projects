@@ -1,4 +1,6 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
+import { AuthContext } from '../../context-api/authContext'
+import Nav from '../../components/nav'
 
 const SetServices = () => {
 
@@ -9,6 +11,7 @@ const SetServices = () => {
         price:'',
         duration:''
     })
+    const {token} = useContext(AuthContext)
 
     function handleChange(e){
         const {name,value} = e.target;
@@ -20,6 +23,7 @@ const SetServices = () => {
         await fetch(`${api}/admin/service`,{
             method:"POST",
             headers:{
+                "authorization":`Bearer ${token}`,
                 "Content-Type":'application/json'
             },
             body:JSON.stringify(details)
@@ -30,6 +34,7 @@ const SetServices = () => {
 
   return (
     <>
+    <Nav></Nav>
     <div className="d-flex justify-center items-center h-screen">
  <div className=" bg-violet-400 p-4 rounded border-2 border-black">
 

@@ -2,3 +2,6 @@ body{
     /* background-color: oklch(94.3% 0.029 294.588); */
     background-color: oklch(96.9% 0.016 293.756);
 }
+input[type="radio"] {
+  accent-color: oklch(56.112% 0.25144 283.345); /* Use any color name, hex, or rgb */
+}

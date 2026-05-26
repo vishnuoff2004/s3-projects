@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState,useEffect } from 'react'
 import Nav from "../../components/nav"
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context-api/authContext'
 
 const ManageServices = () => {
     // API URL LINK
@@ -10,10 +11,19 @@ const ManageServices = () => {
 
     const [services,setServices] = useState([])
     const navigate = useNavigate()
+    const {token} = useContext(AuthContext)
 
+    
     useEffect(()=>{
         async function fetchData(){
-            await fetch(`${api}/admin/serviceProvider`)
+            await fetch(`${api}/admin/serviceProvider`,
+                {
+                    method:"GET",
+                    headers:{
+                        "authorization":`Bearer ${token}`
+                    },
+                }
+            )
                 .then(response => response.json())
                 .then(data => setServices(data.data))
                 .catch(err => console.log(err))
