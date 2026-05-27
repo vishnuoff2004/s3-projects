@@ -49,7 +49,9 @@ const SetProviders = () => {
     function handleChange(e){
       const {name,value} = e.target;
 
-      setData(prev => ({...prev,[name]:value,skill_type:services[0]?.service_name}))
+      setData(prev => ({...prev,[name]:
+        name == "isAvailable" ? !prev.isAvailable :
+        value,skill_type:services[0]?.id}))
     }
 
 
@@ -102,8 +104,8 @@ const SetProviders = () => {
           <div className='mt-2'>
             <label htmlFor="" className='text-black'>is-available:</label>
             <div className='ms-8 ps-4'>
-                <input type="radio" name="isAvailable" value={true}  onChange={handleChange}/> available <br />
-                <input type="radio" name="isAvailable" value={false} onChange={handleChange}/> not-available
+                <input type="radio" name="isAvailable"   onChange={handleChange}/> available <br />
+                <input type="radio" name="isAvailable"  onChange={handleChange}/> not-available
             </div>
           </div>
 

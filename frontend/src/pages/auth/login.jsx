@@ -22,14 +22,14 @@ const login = () => {
   const navigate = useNavigate()
 
   const api = import.meta.env.VITE_API_URL
-
+ 
   useEffect(()=>{
     validation()
   },[data])
 
   useEffect(()=>{
     if(msg == "login successful"){
-      navigate('/')
+      navigate('/admin')
     }
   },[msg])
 
@@ -79,18 +79,22 @@ const login = () => {
 
  function validation(){
 
-    const error ={}
+    let error ={}
 
     if(!data.email){
        error.email = "email is required"
     }
-
-    if(!data.password){
+    else if(!data.email.includes("@gmail.com")){
+      error.email = "email feild required @gmail.com"
+    }
+    else if(!data.password){
        error.password = 'password is required'
     }
-
-    if(data.password.length <6){
+    else if(data.password.length <6){
       error.password = "password needs at least 6 character"
+    }
+    else{
+      error = {}
     }
 
     setErr(error)
@@ -145,7 +149,7 @@ const login = () => {
                     {
                       !isLoading ? 
                       <button
-                      //  disabled={Object.keys(err).length >0}  
+                       disabled={Object.keys(err).length >0}  
                        className='disabled:opacity-50 bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 enabled:hover:bg-violet-800' onClick={handleLogin}>login</button>
                       :
                       <button

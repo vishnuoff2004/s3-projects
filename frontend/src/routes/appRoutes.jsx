@@ -9,6 +9,7 @@ import ManageServices from "../pages/admin/manageServices.jsx";
 import SetProviders from "../pages/admin/setProviders.jsx";
 import ProtectedRoutes from "../protectedRoutes/protectedRoutes.jsx";
 import Unauthorized from "../pages/unauthorized/unauthorized.jsx";
+import AdminDashboard from "../pages/admin/adminDashboard.jsx";
 
 export default function AppRoutes()
 {
@@ -25,6 +26,7 @@ export default function AppRoutes()
 
 
             <Route element={<ProtectedRoutes/>}>  
+              <Route path="/admin" element={<AdminDashboard/>}></Route>
               <Route path='/service-provider' element ={<ManageServices/>}></Route>
               <Route path="/services" element={<SetServices/>}></Route>
               <Route path="/set-provider/:id" element={<SetProviders/>}></Route>

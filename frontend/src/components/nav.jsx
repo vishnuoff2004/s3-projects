@@ -20,8 +20,13 @@ const Nav = () => {
         </div>
 
         <div>
-
+            
+            {
+              user?.role == "user" &&
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/">dash-board</NavLink>
+            }
+
+            <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/admin">dash-board</NavLink>
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/services">services</NavLink>
               {
                 user?.role == "admin" &&
