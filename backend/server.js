@@ -15,9 +15,13 @@ app.use('/auth',require('./routes/authRoutes'))
 
 // admin service provider - ROUTES
 app.use('/admin',require('./routes/servicesRoutes'))
+// PROVIDERS - ROUTES
+app.use('/admin',require('./routes/providerRoutes'))
 
 //verify
 app.use('/verification',require('./routes/authRoutes'))
+
+
 
 app.listen(port,()=>{
     console.log(`server is running at port ${port}`)

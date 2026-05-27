@@ -11,6 +11,7 @@ const Sign = () => {
     password:'',
     confirmPassword:''
   })
+  const [isLoading,setIsLoading] = useState(false)
 
   const navigate = useNavigate()
   const [err,setErr] = useState({})   
@@ -41,6 +42,7 @@ const Sign = () => {
       alert("passwords do not match")
     }
 
+    setIsLoading(true)
     await fetch(`${api}/auth/register`,
       {
         method:'POST',
@@ -50,6 +52,7 @@ const Sign = () => {
         body:JSON.stringify(data)
       }
     ).then(res => res.json()).then(data => (alert(data.msg),setMsg(data.msg))).catch(err => console.log(err))
+    setIsLoading(false)
   }
 
  function validation(){
@@ -100,11 +103,11 @@ const Sign = () => {
                         value={data.name}
                         name="name" 
                         placeholder='vishnu krishna'
-                        className="block min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
+                        className="block  min-w-0 grow bg-transparent py-1.5 pr-3 pl-1 text-base text-white placeholder:text-white focus:outline-none sm:text-sm/6"
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.name && <p className='text-light ms-3 mt-1'>{err.name} !!!</p>}
+                    {err.name && <p className='text-orange-300 ms-3 mt-1'>{err.name} !!!</p>}
 
 
                   <label htmlFor="email" className='font-medium text-black mt-1'>Email :</label>
@@ -120,7 +123,7 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.email && <p className='text-light ms-3 mt-1'>{err.email} !!!</p>}
+                    {err.email && <p className='text-orange-300   ms-3 mt-1'>{err.email} !!!</p>}
 
 
 
@@ -138,7 +141,7 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.contact && <p className='text-light ms-3 mt-1'>{err.contact} !!!</p>}
+                    {err.contact && <p className='text-orange-300  ms-3 mt-1'>{err.contact} !!!</p>}
 
 
                   <label htmlFor="password" className='font-medium text-black mt-1'>Password :</label>
@@ -154,7 +157,7 @@ const Sign = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.password && <p className='text-light ms-3 mt-1'>{err.password}  !!!</p>}
+                    {err.password && <p className='text-orange-300  ms-3 mt-1'>{err.password}  !!!</p>}
 
 
                   <label htmlFor="confrimPassword" className='font-medium text-black mt-1'>confrim - password :</label>
@@ -172,8 +175,43 @@ const Sign = () => {
                     </div>
 
 
-                  <div className='text-center'>
-                   <button className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800'  onClick={handleRegister}>Register</button>
+                  <div className='text-center flex justify-content-center'>
+                    {
+                      !isLoading ? 
+                   <button 
+                    disabled={Object.keys(err).length >0}
+                   className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 enabled:hover:bg-violet-800 disabled:opacity-50'  onClick={handleRegister}>Register</button>
+                  :
+                    <button
+                        type="button"
+                        disabled
+                        className="bg-violet-500 text-white p-1 px-4 rounded flex items-center disabled:opacity-75 my-3"
+                      >
+                        <svg
+                          className="mr-3 size-5 animate-spin"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          ></path>
+                        </svg>
+                        loading ...
+                      </button>
+                    }
+
                   </div>
 
           <div>Already have an account ? <Link to="/login" className='text-white'>Login</Link></div>

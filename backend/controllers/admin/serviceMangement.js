@@ -39,4 +39,19 @@ const addServices = async(req,res)=>{
     }
 }
 
-module.exports = {fetchServices,addServices}
+const fetchService = async(req,res)=>{
+    try{
+        const {id} = req.query;
+
+        const sql = `select * from services where id  = ?`
+        const [result] =  await db.query(sql,[id])
+
+        res.status(200).json({msg:'service fetch successfully',data:result})
+    }
+    catch(err){
+        res.status(500).json({msg:'internal server error'})
+        console.log(err)
+    }
+}
+
+module.exports = {fetchServices,addServices,fetchService}

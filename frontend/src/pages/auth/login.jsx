@@ -9,6 +9,7 @@ const login = () => {
     isAdmin:false,
     isUser:true
   })
+  const [isLoading,setIsLoading] = useState(false)
 
   const [err,setErr] = useState({})
   const {token,setToken} = useContext(AuthContext)
@@ -18,8 +19,6 @@ const login = () => {
     email:'',
     password:''
   })
-
-
   const navigate = useNavigate()
 
   const api = import.meta.env.VITE_API_URL
@@ -34,9 +33,12 @@ const login = () => {
     }
   },[msg])
 
+  console.log(isLoading)
+
   async function handleLogin(){
     if(user.isAdmin){
       // admin login logic
+      setIsLoading(true)
       await fetch(`${api}/auth/admin`,
         {
           method:'POST',
@@ -46,9 +48,11 @@ const login = () => {
           body:JSON.stringify(data)
         }
       ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),setToken(data.token),localStorage.setItem("token",data.token))).catch(err => console.log(err))
+      setIsLoading(false)
     }
     else{
       // user login logic
+    setIsLoading(true)
      await fetch(`${api}/auth/user`,
         {
           method:'POST',
@@ -59,6 +63,7 @@ const login = () => {
         }
       ).then(res => res.json()).then(data =>(alert(data.msg),setMsg(data.msg),setToken(data.token),localStorage.setItem("token",data.token))).catch(err => console.log(err))
     }
+    setIsLoading(false)
     setData({
       email:'',
       password:''
@@ -120,7 +125,7 @@ const login = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.email && <p className='text-light ms-3 mt-1'>{err.email} !!!</p>}
+                    {err.email && <p className='text-orange-200 ms-3 mt-1'>{err.email} !!!</p>}
 
                   <label htmlFor="email" className='font-medium text-black mt-3'>Password :</label>
 
@@ -134,10 +139,44 @@ const login = () => {
                         onChange={handleChange}/>
                       </div>
                     </div>
-                    {err.password && <p className='text-light ms-3 mt-1'>{err.password}  !!!</p>}
+                    {err.password && <p className='text-orange-200 ms-3 mt-1'>{err.password}  !!!</p>}
 
-                  <div className='text-center'>
-                   <button  className='bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 hover:bg-violet-800' onClick={handleLogin}>login</button>
+                  <div className='text-center flex justify-center'>
+                    {
+                      !isLoading ? 
+                      <button
+                      //  disabled={Object.keys(err).length >0}  
+                       className='disabled:opacity-50 bg-violet-600 p-1 px-4 font-bold text-light rounded-sm my-3 enabled:hover:bg-violet-800' onClick={handleLogin}>login</button>
+                      :
+                      <button
+                        type="button"
+                        disabled
+                        className="bg-violet-500 text-white p-1 px-4 rounded flex items-center disabled:opacity-75 my-3"
+                      >
+                        <svg
+                          className="mr-3 size-5 animate-spin"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          ></path>
+                        </svg>
+                        loading ...
+                      </button>
+                    }
                   </div>
 
                     {
