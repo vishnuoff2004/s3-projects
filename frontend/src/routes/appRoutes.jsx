@@ -10,6 +10,7 @@ import SetProviders from "../pages/admin/setProviders.jsx";
 import ProtectedRoutes from "../protectedRoutes/protectedRoutes.jsx";
 import Unauthorized from "../pages/unauthorized/unauthorized.jsx";
 import AdminDashboard from "../pages/admin/adminDashboard.jsx";
+import SelectedServices from "../pages/user/serviceList.jsx";
 
 export default function AppRoutes()
 {
@@ -22,8 +23,7 @@ export default function AppRoutes()
             <Route path='/login' element ={<Login/>}></Route>
             <Route path='/my-bookings' element ={<MyBookings/>}></Route>
             <Route path='/access' element={<Unauthorized/>}></Route>
-
-
+            <Route path="/selected-services/:id" element={<SelectedServices/>}></Route>
 
             <Route element={<ProtectedRoutes/>}>  
               <Route path="/admin" element={<AdminDashboard/>}></Route>

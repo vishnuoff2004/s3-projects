@@ -21,6 +21,9 @@ app.use('/admin',require('./routes/providerRoutes'))
 //verify
 app.use('/verification',require('./routes/authRoutes'))
 
+// user Routes
+app.use('/user',require('./routes/userRoutes/serviceRoutes'))
+
 
 
 app.listen(port,()=>{

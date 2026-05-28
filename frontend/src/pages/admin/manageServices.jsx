@@ -42,7 +42,6 @@ const ManageServices = () => {
   return (
     <>
         <Nav></Nav>
-        <h1 className='ms-7 mt-3 font-medium font-serif text-2xl'>managing - services .....</h1>
         
         <div className='flex justify-center'>
             <div className="container h-screen ">
