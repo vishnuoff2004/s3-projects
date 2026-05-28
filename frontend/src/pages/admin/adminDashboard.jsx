@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Nav from "../../components/nav"
 import { useState,useContext} from 'react'
 import { AuthContext } from '../../context-api/authContext'

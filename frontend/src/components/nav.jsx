@@ -5,9 +5,11 @@ import { AuthContext } from '../context-api/authContext';
 
 const Nav = () => {
   const navigate = useNavigate();
+  const {setUser} = useContext(AuthContext)
    function handleLogOut(){
     localStorage.removeItem("token");
     navigate("/login");
+    setUser(null)
    }
 
    const {user} = useContext(AuthContext)
@@ -22,11 +24,14 @@ const Nav = () => {
         <div>
             
             {
-              user?.role == "user" &&
-            <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/">dash-board</NavLink>
+              (user?.role == "user" || user?.role == "") &&
+            <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/">dash-board</NavLink>     
             }
 
+            {
+              user?.role == "admin" &&
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" } to="/admin">dash-board</NavLink>
+            }
             <NavLink className={({isActive}) => isActive ? "text-decoration-underline text-light font-bold px-3 mx-2" : "text-decoration-none text-black  font-bold mx-2" }  to="/services">services</NavLink>
               {
                 user?.role == "admin" &&

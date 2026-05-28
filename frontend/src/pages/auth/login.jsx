@@ -27,11 +27,31 @@ const login = () => {
     validation()
   },[data])
 
-  useEffect(()=>{
-    if(msg == "login successful"){
+  // useEffect(()=>{
+  //   console.log(user.role)
+  //   if(msg == "login successful"){
+  //     if(user?.role == "admin"){
+  //       navigate('/admin')
+  //     }
+  //   if(user?.role == "user"){
+  //       navigate('/')
+  //     }
+  //   }
+
+  // },[msg,user])
+
+  useEffect(() => {
+  if (msg === "login successful") {
+
+    if (user.isAdmin) {
       navigate('/admin')
     }
-  },[msg])
+
+    if (user.isUser) {
+      navigate('/')
+    }
+  }
+}, [msg, user])
 
   console.log(isLoading)
 
