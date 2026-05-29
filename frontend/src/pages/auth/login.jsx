@@ -142,6 +142,7 @@ const login = () => {
                   <div className='mt-2'>
                     <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
                         <input type="email" 
+                        id='email'
                         value={data.email}
                         name="email" 
                         placeholder='vishnu@gmail.com'
@@ -151,11 +152,12 @@ const login = () => {
                     </div>
                     {err.email && <p className='text-orange-200 ms-3 mt-1'>{err.email} !!!</p>}
 
-                  <label htmlFor="email" className='font-medium text-black mt-3'>Password :</label>
+                  <label htmlFor="password" className='font-medium text-black mt-3'>Password :</label>
 
                   <div className='mt-2'>
                     <div className='flex items-center rounded-md bg-white-500 pl-3 outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-black-800 border-2'>
-                        <input type="email" 
+                        <input type="password" 
+                        id="password"
                         value={data.password}
                         name="password" 
                         placeholder='* * * * * * *'
